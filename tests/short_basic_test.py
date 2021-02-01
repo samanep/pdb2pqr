@@ -32,19 +32,6 @@ def test_basic_pdb(input_pdb, tmp_path):
     )
 
 
-@pytest.mark.parametrize("input_pdb", ["1FAS", "3U7T"], ids=str)
-def test_basic_cif(input_pdb, tmp_path):
-    """Non-regression tests on CIF-format biomolecules without ligands."""
-    args = "--log-level=INFO --ff=AMBER --drop-water --apbs-input=apbs.in"
-    output_pqr = Path(input_pdb).stem + ".cif"
-    common.run_pdb2pqr(
-        args=args,
-        input_pdb=input_pdb,
-        output_pqr=output_pqr,
-        tmp_path=tmp_path,
-    )
-
-
 @pytest.mark.parametrize("input_pdb", ["1EJG"], ids=str)
 def test_broken_backbone(input_pdb, tmp_path):
     """Test graceful failure of optimization with missing backbone atoms."""
